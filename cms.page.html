@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="body row row-fluid">
+		<div class="sidebar">
+		<div class="profile">
+			<div class="information">
+				<div class="avatar">
+					<img src="
+					{% if config("minecraft-enabled") == "Enabled" %}
+					https://minotar.net/avatar/{{ basket.ign is empty ?  'Steve' : basket.ign }}
+					{% else %}
+					https://i.imgur.com/HRNZvmQ.png
+					{% endif %}
+					">
+					</div>
+					<div class="info">
+						<div class="main">Logged as</div>
+						<div class="sub">{{ basket.ign is empty ?  'Guest' : basket.ign }}</div>
+					</div>
+					<div class="settings">
+						<div class="logout visible-desk">
+                            {% if basket.ign  %}
+							<a href="/checkout/logout">
+								<i data-toggle="tooltip" title="Click to logout" class="fas fa-sign-out-alt"></i>
+							</a>
+                            {% else %}
+							<a href="/login">
+								<i data-toggle="tooltip" title="Click to login" class="fas fa-sign-in-alt"></i>
+							</a>
+                            {% endif %}
+                                
+						</div>
+						{% if basket.ign %}
+						<div class="basket" data-toggle="modal" data-target="#basketModal">
+							<i data-toggle="tooltip" title="Checkout" class="fas fa-shopping-basket"></i>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>	    
+          <nav class="navbar navbar-default" role="navigation">
+    
+              <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="{% if page.category == "index" %}active{% endif %}"><a href="/">{{ __("Home") }}</a></li>
+                    {% for category in store.categories %}
+                      {% if category.subcategories|length > 0 %}
+                        <li class="sleek-dropdown dropdown {% if category.active %}active{% endif %}">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }} <i class="fa fa-caret-down"></i></a>
+                            <ul class="dropdown-menu">
+                              {% for subcategory in category.subcategories %}
+                                <li><a href="/category/{{ subcategory.id }}">{{ subcategory.name }}</a></li>
+                              {% endfor %}
+                            </ul>
+                      {% else %}
+                        <li class="{% if category.active %}active{% endif %}"><a href="/category/{{ category.id }}">{{ category.name }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% for page in store.pages %}
+                        <li class="{% if page.active %}active{% endif %}"><a href="/{{ page.slug }}">{{ page.title }}</a></li>
+                    {% endfor %}                
+                    {% if basket.username %} 
+                        <li class="visible-xs"><a href="/checkout/logout">{{ __("Logout") }}</a></li>
+                    {% endif %}
+                </ul>
+              </div>
+          </nav>		    
+			{{ modules|raw }}
+		</div>	 	    
+		<div class="content span8 col-md-8">
+			<div class="panel panel-default box-container">
+				<div class="panel-heading header">{{ page.title }}</div>
+				<div class="panel-body content">
+					<p>
+				  		{{ page.metaData.content|raw }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

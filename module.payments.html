@@ -1,0 +1,17 @@
+<div class="panel panel-default module">
+    <div class="panel-body">
+      <div class="payments-module"> 
+          <i class="far fa-credit-card"></i>
+          <div class="payments">
+            {% for payment in module.payments %}
+                  <div class="avatar" data-toggle="tooltip" data-placement="top" data-html="true" title="<b>{{ payment.ign }}</b><br>{% if module.displayPackage %}{{ payment.name[:20] }}
+                        {% endif %}">
+                    <img src="{{ payment.skin }}" width="28" />
+                  </div>
+            {% else %}
+                {{ __("No recent payments to display.") }}
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+</div>

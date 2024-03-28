@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!--
+/ Name: SleekBuy
+/ Author: qSeek
+/ Support: https://discord.gg/4sDtzrs
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{{ store.name }} | {{ page.title }}</title>
+    <link href="/templates/209/css/style.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="shortcut icon" href="{{ store.favicon }}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+    
+        // SleekStore Settings
+        var serverip = '{{ config("server-ip") }}';
+        var port = {{ config("server-port") }};
+        var default_theme = '{{ config("default-theme") }}';
+        var particles_enabled = {{ config("header-particles") }}; 
+        
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        
+        _gaq.push(['_setAccount', 'UA-36735942-3']);
+        _gaq.push(['_trackPageview']);
+        
+        {% if store.googleAnalytics %}
+            _gaq.push(['b._setAccount', '{{ store.googleAnalytics }}']);
+            _gaq.push(['b._trackPageview']);
+        {% endif %}
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <style>
+        :root {
+        --main-color: {{ config("main-color") }};
+        --main-color-transparent: {{ config("main-color-transparent") }};
+        --sleek-logo-size: {{ config("logo-size") }};
+        }
+        .headerbg {
+            background: url('{% if config("background-image") %} {{ config("background-image") }} {% else %} https://i.imgur.com/7gRx5CI.png {% endif %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        {% if config("minecraft-enabled") == 'Disabled' %}
+        .basket-header {
+             padding: 20px;
+        }
+        {% endif %}
+    </style>
+    <style>{{ store.css|raw }}</style>
+
+  </head>
+  <body {% if config("theme-switcher-enabled") == 'Disabled' %} class="{{ config("default-theme") }}" {% endif %}>
+    {% if config("screen-loading-enabled") == 'Enabled' %}        
+    <div id="preloader">
+        <div class="sk-cube-grid">
+          <div class="sk-cube sk-cube1"></div>
+          <div class="sk-cube sk-cube2"></div>
+          <div class="sk-cube sk-cube3"></div>
+          <div class="sk-cube sk-cube4"></div>
+          <div class="sk-cube sk-cube5"></div>
+          <div class="sk-cube sk-cube6"></div>
+          <div class="sk-cube sk-cube7"></div>
+          <div class="sk-cube sk-cube8"></div>
+          <div class="sk-cube sk-cube9"></div>
+        </div>
+    </div> 
+    {% endif %}
+    {% if config("theme-switcher-enabled") == 'Enabled' %}
+    <div class="seek_themechanger" onclick="changetheme();">
+        <i class="fas fa-adjust"></i>
+    </div>
+    {% endif %}
+    <div class="header">
+        {% if config("navbar-enabled") == 'Enabled' %}
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar-items">
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> <span class="text">Home</span></a></li>
+                    <li><a href="/"><i class="fas fa-comments"></i> <span class="text">Forums</span></a></li>
+                    <li><a href="/"><i class="fas fa-shield-alt"></i> <span class="text">Bans</span></a></li>
+                </ul>
+                {% if config("player-counter-enabled") == 'Enabled' %}
+                <div class="topbar-server" id="CopyIP">
+                    <div class="text">JOIN <b id="online">0</b> PLAYERS ONLINE</div>
+                    <div class="ip" id="ip">loading...</div>
+                </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="logo">
+            {% if store.logo %}
+                <a href="/"><img src="{{ store.logo }}" /></a>
+            {% else %}
+                <a href="/"><img src="https://i.imgur.com/bNskwHN.png" /></a>
+            {% endif %}
+        </div>
+        <div class="headerbg"></div>
+        <div id="particles-header"></div>
+      </div>
+      
+    <div class="container">
+    <input type="text" id="ipvalue" value="loading..."/>
+        
+      <div class="notification">
+        {% if page.message.display %}
+            <div class="alert alert-{{ page.message.type}} alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ page.message.text }}
+            </div>
+        {% endif %}  
+      </div>
+
+      {% block content %}{% endblock %}
+
+      {% if store.plan == "1" %}
+        <div class="advertisement">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px;" data-ad-client="ca-pub-9830135219921132" data-ad-slot="7404819681"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      {% endif %}
+    
+    </div>
+    <footer class="footer">
+        {% if config("footer-enabled") == 'Enabled' %}
+        <div class="seekutils">
+            <div class="container">
+                <div class="seekrow">
+                    <div class="block">
+                        {% if store.logo %}
+                            <img src="{{ store.logo }}" />
+                        {% else %}
+                            <img src="https://i.imgur.com/bNskwHN.png" />
+                        {% endif %}
+                    </div>
+                    <div class="block">
+                        <div class="title">{{ config("footer-2-title") }}</div>
+                        <div class="text">{{ config("footer-2-content") }}</div>
+                    </div>      
+                    <div class="block">
+                        <div class="title">{{ config("footer-3-title") }}</div>
+                        <ul>
+                            <li><a href="/terms/checkout">Terms & Conditions</a></li>
+                            <li><a href="/terms/privacy">Privacy Policy</a></li>
+                            <li><a href="/terms/impressum">Impressum</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="seekcopyright">
+            <div class="container">
+                <div class="seekrow">
+                    <div class="left"><span>© Copyright {{ store.name }}. 2020 All Rights Reserved.</span></div>
+                    <div class="right"><a href="https://qseek.org"><img src="https://i.imgur.com/ESxNJY9.png"></a></div> <!-- Removing or changing trademark isn't allowed! -->
+                </div>
+            </div>    
+        </div>
+    </footer>
+    <!-- Basket -->
+    <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="basket-header">
+               {% if config("minecraft-enabled") == "Enabled" %} <div class="avatar"><img src="https://qseek.org/api/skins/body.php?user={{ basket.ign is empty ?  'Steve' : basket.ign }}"></div> {% endif %}
+                <div class="details"><b>{{ basket.ign is empty ?  'Guest' : basket.ign }}</b><br><span class="sub">{{ basket.packages|length }} {{ basket.packages|length > 1 ?  'ITEMS' : 'ITEM' }} | {{ basket.price|money }} {{ basket.currency }}</span></div>
+                <div class="currency">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        {{ basket.currency }} <span class="fa fa-caret-down"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        {% for currency in store.currencies %} {% if currency.code in [store.currency, "AUD", "BRL", "CAD", "DKK", "EUR", "NOK", "NZD", "GBP", "SEK", "USD", "PLN"] %}
+                        <li {% if basket.currency==currency.code %}class="active" {% endif %}>
+                            <a href="?currency={{ currency.code }}">{{ currency.code }}</a>
+                        </li>
+                        {% endif %} {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="basket-items">
+                        {% for package in basket.packages %}
+                        <li class="basket-item">
+                            <div class="product">
+                                <div class="name">{{ package.name[:25] }}</div>
+                                <div class="price">{{ package.price|money }} <small>{{ basket.currency }}</small></div>
+                            </div>
+                            <div class="remove">
+                                <a href="/checkout/packages/remove/{{ package.id }}"><i class="fa fa-times"></i></a>
+                            </div>
+                        </li>
+                        {% endfor %}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="/checkout/basket"><button type="button" class="btn btn-primary">{{ __("Checkout") }}</button></a> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="popup-modal" tabindex="-1" role="dialog"></div>
+    
+    {% if page.category == "checkout" %}
+      <script src="https://js.stripe.com/v2/"></script>
+    {% endif %}
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="/templates/209/js/bootstrap.min.js"></script>
+    <script src="/templates/209/js/skin.min.js"></script>
+    <script src="/templates/209/js/site.js"></script>
+     <script>
+            jQuery(function(){
+                var countdowns = $(".countdown-to");
+                countdowns.each(function(){
+                   setInterval(function(ele) {
+                       timeLeft = parseInt(ele.attr("data-countdown"));
+                       if (timeLeft == 0) {
+                           ele.html("Time Expired!");
+                       } else {
+                       timeLeft--;
+                       ele.attr("data-countdown", timeLeft);
+                      var days = Math.floor(timeLeft / (60 * 60 * 24));
+                      var hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
+                      var minutes = Math.floor((timeLeft % (60 * 60)) / (60));
+                      var seconds = Math.floor((timeLeft % 60));
+                      ele.html(days + "d " + hours + "h " + minutes + "m " + seconds + "s");
+                       }
+                   }, 1000, jQuery(this));
+                });
+            });
+
+        </script>
+        {% if config("player-counter-enabled") == 'Enabled' %}        
+        <script>
+        
+        document.getElementById('ipvalue').value = serverip;
+        document.getElementById('ip').textContent = serverip;
+    
+        $.getJSON(`https://api.minetools.eu/ping/${serverip}/${port}`, function (data) {
+    
+            if (data.error === undefined) {
+                document.getElementById('online').textContent = data.players.online;
+            } else {
+    
+            }
+        });
+    		
+    		var copyip = document.getElementById('CopyIP');
+    		copyip.addEventListener('click', Copy);
+    		
+    		function Copy(){
+    					Swal.fire(
+    							'IP Copied!',
+    							'We hope to see you online soon!',
+    							'success'
+    					);
+    		  document.getElementById("ipvalue").select(),document.execCommand("copy");
+    		}
+        </script>
+        {% endif %}
+        <script>
+        function changetheme(){
+            var theme = $.cookie('theme');
+
+            if(theme != undefined)
+                $.removeCookie('theme', { path: '/' });
+                
+            if(theme == "light"){
+                $( "body" ).addClass("dark"); 
+                $.cookie("theme", "dark", { path: '/' });
+            }else {
+                $('body').toggleClass('dark');
+                $.cookie("theme", "light", { path: '/' });
+            }   
+        }
+
+        </script>
+        {% if config("theme-switcher-enabled") == 'Enabled' %}   
+            <script>
+            $(function () {
+              var theme = $.cookie('theme');
+              if(theme != undefined){
+                if(theme != "light"){
+                    $( "body" ).addClass("dark");
+                }
+              }else {
+                  if(default_theme != "light"){
+                    $( "body" ).addClass("dark");
+                  }
+              }
+              $("#preloader").addClass("loaded");
+            });
+            </script>
+        {% endif %}
+        
+        {% if config("theme-switcher-enabled") == 'Disabled' and config("screen-loading-enabled") == 'Enabled' %}  
+        <script>
+        $(function () {
+          $("#preloader").addClass("loaded");
+        });
+        </script>
+        {% endif %}
+        <script>
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.sleek-dropdown').on('show.bs.dropdown', function () {
+                $(this).find(".dropdown-menu").first().stop(!0, !0).slideDown(200);
+            });
+            $('.sleek-dropdown').on('hide.bs.dropdown', function () {
+                $(this).find(".dropdown-menu").first().stop(!0, !0).slideUp(200);
+            });
+        </script>
+        <script>
+        $(function() {
+            if(particles_enabled){
+                particlesJS("particles-header", {"particles":{"number":{"value":400,"density":{"enable":true,"value_area":800}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.31,"random":true,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":false,"distance":500,"color":"#ffffff","opacity":0.4,"width":2},"move":{"enable":true,"speed":4,"direction":"top","random":true,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"%%__USER__%%"},"onclick":{"enable":false,"mode":"repulse"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":0.5}},"bubble":{"distance":400,"size":4,"duration":0.3,"opacity":1,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+            }
+        });
+        </script>    
+    </body>
+</html>

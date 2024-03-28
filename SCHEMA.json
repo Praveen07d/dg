@@ -1,0 +1,224 @@
+{
+   "author":"qSeek",
+   "support_email":"me@qseek.org",
+   "config":[
+      {
+         "header":"General Settings",
+         "options":[
+            {
+               "id":"background-image",
+               "name":"Body Background Image",
+               "description":"Enter the background image to show. If this is empty, the background image will be the default one.",
+               "type":"image-uploader"
+            },
+            {
+               "id":"main-color",
+               "name":"Main Color",
+               "default":"#3498DB",
+               "description":"Enter the main color used on your website.",
+               "type":"textarea"
+            },
+            {
+               "id":"main-color-transparent",
+               "name":"Main Color Transparent (RGB)",
+               "default":"rgb(52,152,219,0.6)",
+               "description":"Enter the main color used on your website - it will be used in the header.",
+               "type":"textarea"
+            },
+            {
+               "id":"logo-size",
+               "name":"Logo Size",
+               "default":"250px",
+               "description":"Enter the logo size - it will be used in the header.",
+               "type":"textarea"
+            },
+            {
+               "id":"default-theme",
+               "name":"Default Theme",
+               "description":"The default theme on the first page load.",
+               "type": "select",
+               "default": "light",
+               "values": [
+                 "light",
+                 "dark"
+               ]
+            },
+            {
+               "id":"header-particles",
+               "name":"Toggle Header Particles",
+               "description":"Toggle the particles from header.",
+               "type": "select",
+               "default": "true",
+               "values": [
+                 "true",
+                 "false"
+               ]
+            },
+            {
+              "id": "minecraft-enabled",
+              "name": "Toggle Minecraft Mode",
+              "description": "Are you using the template for another game? Turn this setting off to remove all minecraft content.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "id": "theme-switcher-enabled",
+              "name": "Toggle Theme Switcher",
+              "description": "Toggle the theme switcher button.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+              "id": "screen-loading-enabled",
+              "name": "Toggle Screen Loading",
+              "description": "Toggle the screen loading (NOT RECOMMENDED) If you disable this it's recommended to disable Theme Switcher too.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            }      
+         ]
+      },
+      {
+         "header":"Player Counter Settings",
+         "options":[
+            {
+              "id": "player-counter-enabled",
+              "name": "Toggle Player Counter",
+              "description": "Toggle the player counter.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+               "id":"server-ip",
+               "name":"Server IP",
+               "default":"mc.hypixel.net",
+               "description":"Enter your server IP - it will be used in the copy server IP section.",
+               "type":"textarea"
+            },
+            {
+               "id":"server-port",
+               "name":"Server Port",
+               "default":"25565",
+               "description":"Enter your server PORT - it will be used in the copy server IP section.",
+               "type":"textarea"
+            }
+         ]
+      },
+      {
+         "header":"Top Bar Settings",
+         "options":[
+            {
+              "id": "navbar-enabled",
+              "name": "Toggle TopBar",
+              "description": "Toggle the topbar.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            }
+         ]
+      },
+      {
+         "header":"Footer Settings",
+         "options":[
+            {
+              "id": "footer-enabled",
+              "name": "Toggle Footer",
+              "description": "Toggle the footer.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+               "id":"footer-2-title",
+               "name":"Block 2 Title",
+                "description": "Set the name of block 2",
+               "default":"About Us",
+               "type":"textarea"
+            },            
+            {
+               "id":"footer-2-content",
+               "name":"Block 2 Content",
+                "description": "Set the content of block 2",
+               "default":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+               "type":"textarea"
+            },
+            {
+               "id":"footer-3-title",
+               "name":"Block 3 Title",
+                "description": "Set the name of block 3",
+               "default":"Legal",
+               "type":"textarea"
+            }        
+         ]
+      },         
+      {
+         "header":"Announcement Settings",
+         "options":[
+            {
+              "id": "announcement-enabled",
+              "name": "Toggle Announcement",
+              "description": "Toggle announcement that appears on home page.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            },
+            {
+               "id":"announcement-text",
+               "name":"Announcement text",
+               "default":"This is an announcement and can be edited from WebStore > Design > Edit > Options",
+               "description":"Enter your announcement.",
+               "type":"textarea"
+            },
+            {
+              "id": "a-button-bool",
+              "name": "Toggle Button",
+              "description": "Toggle button that appears in the announcement.",
+              "type": "select",
+              "default": "Enabled",
+              "values": [
+                "Enabled",
+                "Disabled"
+              ]
+            },  
+            {
+               "id":"a-button",
+               "name":"Button Name",
+               "default":"Discord",
+               "description":"Enter the name of the button.",
+               "type":"textarea"
+            },            
+            {
+               "id":"a-button-href",
+               "name":"Button Redirect",
+               "default":"https://discord.gg",
+               "description":"Enter the url you want the button to redirect.",
+               "type":"textarea"
+            }
+         ]
+      }       
+   ]
+}
