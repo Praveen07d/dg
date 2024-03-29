@@ -1,116 +1,156 @@
-{% extends "layout.html" %}
+<html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Minecraft Server Name]</title>
+    <link rel="icon" type="image/png" href="media/favicon.png">
+    <link rel="stylesheet" href="media/style.css">
+    <link href="https://fonts.bunny.net/css?family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <nav class="desktop_navbar">
+      <a href="#"><img class="desktop_navbar_logo_img" src="media/logo_small.png" alt="logo"></a>
+      
+      <a href="#discord" class="desktop_navbar_link scroll">Community</a>
+      <a href="#about" class="desktop_navbar_link scroll">About Us</a>
+      <div class="desktop_navbar_link2_div">
+          <a href="#join" class="desktop_navbar_link2 scroll">Join Us!</a>
+      </div>
+    </nav>
+    <div class="mobile_navbar">
+      <a href="#" class="mobile_navbar_logo_img_a"><img class="mobile_navbar_logo_img" src="media/logo_small.png" alt="logo"></a>
+      <div id="mobile_navbar_links">
+          <a class="mobile_navbar_link" onclick="mobile_navbar_link_hider()" href="https://wiki.example.com/">Wiki</a>
+          <a class="mobile_navbar_link scroll" onclick="mobile_navbar_link_hider()" href="#discord">Community</a>
+          <a class="mobile_navbar_link scroll" onclick="mobile_navbar_link_hider()" href="#about">About Us</a>
+          <a class="mobile_navbar_link scroll" onclick="mobile_navbar_link_hider()" href="#join">Join Us</a>
+        </div>
+        <div class="icon" onclick="mobile_navbar_link_hider()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <script>
+            function mobile_navbar_link_hider() {
+            var x = document.getElementById("mobile_navbar_links");
+            if (x.style.display === "flex") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "flex";
+            }
+            } 
+        </script>
+    </div>
+    <div class="mainflex">
+      <div class="main1">
+        <a class="main1_logo_a" href="#">
+          <img class="main1_logo" src="media/logo.png" alt="logo">
+        </a>
+        <div class="main1_description">
+          <a>The first Manipuri,<br>like</a>
+          <a class="main1_actcent">already done before</a><a>.</a>
+        </div>
+        <div class="main1_ipcopier_div">
+          <button class="main1_ipcopier" onclick="copyText()" type="button">
+            <span class="main1_ipcopier_text1">play.example.com</span>
+            <br>
+            <span class="main1_ipcopier_text2">Click to copy</span>
+          </button>
+          <script>
+            function copyText() {
+                navigator.clipboard.writeText
+            ("play.example.com");
+                }
+            $(document).ready(function() {
+            $('.main1_ipcopier').click(function() {
+                var popup = $('<div>', { class: 'main1_popup' })
+                .append($('<h3 class="copy_confirm">').text('Copied IP to clipboard'))
+                $(this).after(popup);
+                setTimeout(function() {
+                popup.remove();
+                }, 1000);
+            });
+            });
+        </script>
+        </div>
+        <a href="#more" class="scroll">
+          
+        </a>
+        <script>
+          const scrollLinks = document.querySelectorAll('.scroll');
+          scrollLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+              event.preventDefault();
+              const target = document.querySelector(link.getAttribute('href'));
+              const offsetTop = target.offsetTop;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            });
+          });
+        </script>
+      </div>
+      <div id="more"></div>
+      <div class="main2">
+        
+        
+      </div>
+      <div id="discord"></div>
+      
+      <div id="about"></div>
+      <div class="main5">
+        
+        <div class="main5_admin_div">
+          <div class="main5_admins_div main5_admins_dev_type2">
+            <img class="main5_admins_img" alt="admin member img" src="media/member_placeholder.webp">
+            <div class="main5_admins_description_div">
+              <a class="main5_admins_description_rank main5_admins_description_rank_owner">[Owner]</a>
+              <a class="main5_admins_description_title" href="https://example.com">Owner Name</a>
+              <a class="main5_admins_description">Owner<br>description</a>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      <div id="join"></div>
+      <div class="main3">
+        <a class="headline">How to join</a>
+        <div class="main3_join_div_div">
+          <div class="main3_join_div">
+            <a class="main3_join_title">Java</a>
+            <div class="main3_join_content_div">
+              <div class="main3_join_categories">
+                <a>IP:</a>
+                <a>Version:</a>
+              </div>
+              <div class="main3_join_values">
+                <a>play.example.com</a>
+                <a>1.20.1</a>
+              </div>
+            </div>
+          </div>
+          <div class="main3_join_div">
+            <a class="main3_join_title">Bedrock</a>
+            <div class="main3_join_content_div">
+              <div class="main3_join_categories">
+                <a>IP:</a>
+                <a>Port:</a>
+              </div>
+              <div class="main3_join_values">
+                <a>be.example.com</a>
+                <a>69420</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="copyright_div">
+      <a href="https://discord.gg/W77k4byqnx" class="copyright">Made by Vype @2024</a>
 
-{% block content %}
-	{{ config("main-color") }}
-<div class="body">
-	<div class="sidebar">
-		<div class="profile">
-			<div class="information">
-				<div class="avatar">
-					<img src="
-					{% if config("minecraft-enabled") == "Enabled" %}
-					https://minotar.net/avatar/{{ basket.ign is empty ?  'Steve' : basket.ign }}
-					{% else %}
-					https://i.imgur.com/HRNZvmQ.png
-					{% endif %}
-					">
-					</div>
-					<div class="info">
-						<div class="main">Logged as</div>
-						<div class="sub">{{ basket.ign is empty ?  'Guest' : basket.ign }}</div>
-					</div>
-					<div class="settings">
-						<div class="logout visible-desk">
-                            {% if basket.ign  %}
-							<a href="/checkout/logout">
-								<i data-toggle="tooltip" title="Click to logout" class="fas fa-sign-out-alt"></i>
-							</a>
-                            {% else %}
-							<a href="/login">
-								<i data-toggle="tooltip" title="Click to login" class="fas fa-sign-in-alt"></i>
-							</a>
-                            {% endif %}
-                                
-						</div>
-						{% if basket.ign %}
-						<div class="basket" data-toggle="modal" data-target="#basketModal">
-							<i data-toggle="tooltip" title="Checkout" class="fas fa-shopping-basket"></i>
-						</div>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="{% if page.category == "index" %}active{% endif %}">
-							<a href="/">{{ __("Home") }}</a>
-						</li>
-                    {% for category in store.categories %}
-                      {% if category.subcategories|length > 0 %}
-                        
-						<li class="sleek-dropdown dropdown {% if category.active %}active{% endif %}">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }} 
-								<i class="fa fa-caret-down"></i>
-							</a>
-							<ul class="dropdown-menu">
-                              {% for subcategory in category.subcategories %}
-                                
-								<li>
-									<a href="/category/{{ subcategory.id }}">{{ subcategory.name }}</a>
-								</li>
-                              {% endfor %}
-                            
-							</ul>
-                      {% else %}
-                        
-							<li class="{% if category.active %}active{% endif %}">
-								<a href="/category/{{ category.id }}">{{ category.name }}</a>
-							</li>
-                      {% endif %}
-                    {% endfor %}
-                    {% for page in store.pages %}
-                        
-							<li class="{% if page.active %}active{% endif %}">
-								<a href="/{{ page.slug }}">{{ page.title }}</a>
-							</li>
-                    {% endfor %}                
-                    {% if basket.username %} 
-                        
-							<li class="visible-xs">
-								<a href="/checkout/logout">{{ __("Logout") }}</a>
-							</li>
-                    {% endif %}
-                
-						</ul>
-					</div>
-				</nav>		    
-			{{ modules|raw }}
-		
-			</div>
-			<div class="content">
-				<div class="panel panel-default">
-					<div class="panel-body">
-					    {% if config("announcement-enabled") == "Enabled" %}
-						<div class="announce">
-							<div class="bar">
-								<i class="fas fa-bullhorn"></i>
-								<span class="text">{{ config("announcement-text") }}</span>
-								<div class="button">
-								{% if config("a-button-bool") == 'Enabled' %}	<a href="{{ config("a-button-href") }}">{{ config("a-button") }}</a> {% endif %}
-								</div>
-								<div id="particles-js"></div>
-							</div>
-						</div>
-						{% endif %}						
-						<p>
-				  		{{ index.description|raw }}
-					</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script>
-particlesJS("particles-js", {"particles":{"number":{"value":400,"density":{"enable":true,"value_area":800}},"color":{"value":"#fff"},"shape":{"type":"edge","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":true,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":false,"distance":500,"color":"#ffffff","opacity":0.4,"width":2},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"%%__USER__%%"},"onclick":{"enable":false,"mode":"repulse"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":0.5}},"bubble":{"distance":400,"size":4,"duration":0.3,"opacity":1,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
-</script>	
-{% endblock %}
+    </footer>
+  
+
+</body></html>
